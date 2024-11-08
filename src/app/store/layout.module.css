@@ -1,0 +1,15 @@
+/* layout.css */
+.mainLayout {
+  background: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layoutNav {
+  padding: 1rem;
+  background: #333;
+  color: #fff;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 {
-  "name": "nombre-del-proyecto",
+  "name": "constitucion-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.6",
+    "@mui/material": "^6.1.6",
+    "@mui/styled-engine-sc": "^6.1.6",
+    "next": "14.2.16",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.16"
+    "react-hook-form": "^7.53.1",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "eslint": "^8",
