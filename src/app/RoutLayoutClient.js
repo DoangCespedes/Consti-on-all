@@ -27,14 +27,14 @@ export default function RootLayoutClient({ children }) {
 
   // Array de botones personalizados
   const botonesNavBar = [
-    { titulo: "Home", enlace: "/", color: "inherit" },
-    { titulo: "Login", enlace: "/login", color: "secondary" },
-    { titulo: "Registro", enlace: "/registro", color: "primary" },
-    { titulo: "Reiniciar clave", enlace: "/reiniciar_clave", color: "error" },
+    { titulo: "Ingresar", enlace: "/login", color: "#01204E" },
+    { titulo: "Registro", enlace: "/registro", color: "#01204E" },
+    { titulo: "Reiniciar clave", enlace: "/reiniciar_clave", color: "#01204E" },
   ];
 
-  const companyName = "MiCompañía"; // Reemplaza con el nombre de tu compañía
-  const bgColor = "primary.main"; // Color de fondo opcional
+  const urlImg = "https://segurosconstitucion.com/wp-content/uploads/logo.webp"; // Reemplaza con el nombre de tu compañía
+  const bgColor = "#fff"; // Color de fondo opcional
+  const colorTextDrawell = "#000"
 
   return (
     <html lang="en">
@@ -43,9 +43,10 @@ export default function RootLayoutClient({ children }) {
           <header>
             {mostrarNavBar && (
               <NavBar
-                companyName={companyName}
+                urlImg={urlImg}
                 buttons={botonesNavBar}
                 bgColor={bgColor}
+                colorTextDrawell={colorTextDrawell}
               />
             )}
           </header>

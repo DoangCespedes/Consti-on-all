@@ -26,15 +26,16 @@ export default function RegisterForm() {
         justifyContent: 'center',
         mb: 3,
       }}>
-        {/* SVG icon */}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="40" height="40">
+          
+          <rect x="0" y="0" width="24" height="24" fill="black" rx="4"></rect>
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       </Box>
 
-      <Typography component="h1" variant="h5" color="white" mb={2}>
-        Member Login
+      <Typography component="h1" variant="h5" color="black" mb={2}>
+        Registrarme
       </Typography>
 
       <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ width: '100%' }}>
