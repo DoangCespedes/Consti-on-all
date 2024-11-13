@@ -1,4 +1,4 @@
-"use client"; // Indicar que este archivo es un componente de cliente
+"use client"; 
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -22,7 +22,7 @@ export default function RootLayoutClient({ children }) {
   const pathname = usePathname();
 
   // Determinar si la ruta actual es una ruta privada
-  const esRutaPrivada = pathname.startsWith("/store") || pathname.startsWith("/admin");
+  const esRutaPrivada = pathname.startsWith("/app_a") || pathname.startsWith("/app_e");
   const mostrarNavBar = !esRutaPrivada;
 
   // Array de botones personalizados
@@ -32,7 +32,7 @@ export default function RootLayoutClient({ children }) {
     { titulo: "Reiniciar clave", enlace: "/reiniciar_clave", color: "#01204E" },
   ];
 
-  const urlImg = "https://segurosconstitucion.com/wp-content/uploads/logo.webp"; // Reemplaza con el nombre de tu compañía
+  const urlImg ={url:"https://segurosconstitucion.com/wp-content/uploads/logo.webp", enlace:'/'}; 
   const bgColor = "#fff"; // Color de fondo opcional
   const colorTextDrawell = "#000"
 

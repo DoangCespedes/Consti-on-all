@@ -17,18 +17,20 @@ const NavBar = ({ companyName, buttons, bgColor, urlImg, colorTextDrawell }) => 
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: bgColor, height: '4rem' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: bgColor, maxHeight:'3.5rem', zIndex:'1000000000'}}>
       <Toolbar>
-        <Box component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          <Link href="/" passHref>
+        <Box component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center'}}>
             {companyName ? (
-              <Typography variant="h6" component="div" sx={{ cursor: 'pointer' }}>
-                {companyName}
-              </Typography>
+              <Link href= {companyName.enlace} passHref>
+                <Typography variant="h6" component="div" sx={{ cursor: 'pointer', color: companyName.color }}>
+                  {companyName.title}
+                </Typography>
+              </Link>
             ) : (
-              <Image src={urlImg} alt="Logo" width={100} height={50} />
+              <Link href= {urlImg.enlace} passHref>
+                <Image src={urlImg.url} alt="Logo" width={100} height={50} />
+              </Link>
             )}
-          </Link>
         </Box>
         
         {/* Hidden on larger screens */}
@@ -82,7 +84,7 @@ const NavBar = ({ companyName, buttons, bgColor, urlImg, colorTextDrawell }) => 
             >
               <Link href={button.enlace} passHref>
                 <Typography variant="button" component="span">
-                  <div style={{fontSize:'0.7rem', background:'#f5f5f5', fontWeight:'bold'}}>
+                  <div style={{fontSize:'0.7rem', fontWeight:'bold'}}>
                     {button.titulo}
                   </div>
                 </Typography>

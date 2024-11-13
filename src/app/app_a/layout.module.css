@@ -1,0 +1,12 @@
+/* layout.module.css */
+.bodyLayout {
+  height: 100%; /* o min-height: 100vh si es necesario */
+  display: flex;
+  flex-direction: column;
+  background: #0fb9be;
+}
+
+.mainLayout {
+  background: #0fb9be;
+  flex: 1; /* Para que el main ocupe el espacio restante */
+}
