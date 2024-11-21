@@ -3,7 +3,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { CounterProvider } from "../../context/CounterContext";
-import NavBar from "@/components/navbars/navPublic/NavBar";
+import NavBar from "@/components/navbars/NavBar";
 import { usePathname } from "next/navigation";
 
 const geistSans = localFont({
@@ -38,6 +38,9 @@ export default function RootLayoutClient({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="https://segurosconstitucion.com/wp-content/uploads/logo.webp" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <CounterProvider>
           <header>

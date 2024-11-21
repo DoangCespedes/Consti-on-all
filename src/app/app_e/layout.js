@@ -1,6 +1,6 @@
 "use client"; 
 
-import NavBar from '@/components/navbars/navPublic/NavBar';
+import NavBar from '@/components/navbars/NavBar';
 import styles from './layout.module.css';  
 import CustomDrawer from '@/components/drawer/CustomDrawer';
 

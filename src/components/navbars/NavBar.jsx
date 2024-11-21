@@ -17,7 +17,7 @@ const NavBar = ({ companyName, buttons, bgColor, urlImg, colorTextDrawell }) => 
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: bgColor, maxHeight:'3.5rem', zIndex:'1000000000'}}>
+    <AppBar position="fixed" sx={{ backgroundColor: bgColor, zIndex:'1000000000'}}>
       <Toolbar>
         <Box component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center'}}>
             {companyName ? (
@@ -53,10 +53,11 @@ const NavBar = ({ companyName, buttons, bgColor, urlImg, colorTextDrawell }) => 
               color: colorTextDrawell, // Cambia el color del texto aquí si es necesario
               padding: '16px', // Ajusta el padding si quieres más espacio
               width: '250px', // Ajusta el ancho del Drawer si lo necesitas
+              
             },
           }}
         >
-          <List>
+          <List style={{marginTop:'3rem'}}>
             {buttons && buttons.map((button, index) => (
               <ListItem button key={index} onClick={toggleDrawer(false)}>
                 <Link href={button.enlace} passHref>
@@ -70,7 +71,7 @@ const NavBar = ({ companyName, buttons, bgColor, urlImg, colorTextDrawell }) => 
         </Box>
 
         {/* Hidden on smaller screens */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+        <Box sx={{ display: { xs: 'none', md: 'flex'} }}>
           {buttons && buttons.map((button, index) => (
             <Button 
               key={index}
