@@ -31,8 +31,8 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     const userId = `${data.tipoDocumento}${data.numeroDocumento}`;
     try {
-      const response = await axios.post('http://localhost:8080/login', {
-        userName: userId,
+      const response = await axios.post('http://localhost:7000/api/auth/login', {
+        nombre: userId,
         password: data.password
       });
 

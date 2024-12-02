@@ -32,14 +32,15 @@ export default function RootLayoutClient({ children }) {
     { titulo: "Reiniciar clave", enlace: "/reiniciar_clave", color: "#01204E" },
   ];
 
-  const urlImg ={url:"https://segurosconstitucion.com/wp-content/uploads/logo.webp", enlace:'/'}; 
+  // const urlImg ={url:"https://segurosconstitucion.com/wp-content/uploads/logo.webp", enlace:'/'}; 
+  const urlImg ={url:"/assets/LogoConsti.png", enlace:'/'}; 
   const bgColor = "#fff"; // Color de fondo opcional
   const colorTextDrawell = "#000"
 
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="https://segurosconstitucion.com/wp-content/uploads/logo.webp" />
+        <link rel="icon" href="assets/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <CounterProvider>

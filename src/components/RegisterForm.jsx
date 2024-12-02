@@ -19,25 +19,39 @@ export default function RegisterForm() {
   const router = useRouter();
 
   const onSubmit = async (data) => {
-    console.log(data); // Muestra los datos en la consola
-
-    // Simulación de registro
+    console.log('Datos enviados:', data);
+  
     try {
       const userId = `${data.tipoDocumento}${data.numeroDocumento}`;
-      const response = await axios.post('http://localhost:8080/register', {
-        userName: userId,
-        email: data.email,
-        phone: data.telefono,
+  
+      // Construimos el payload esperado por la API
+      const payload = {
+        nombre: userId,
+        nuevoCampo: true, // Este campo parece ser obligatorio según Postman
+        correo: data.email,
+        telefono: data.telefono,
         password: data.password,
-      });
-
+        perfil: "USUARIO_ASEGURADO" // Si es un valor constante, mantenlo aquí
+      };
+  
+      const response = await axios.post('http://localhost:7000/api/usuarios', payload);
+  
+      console.log('Respuesta exitosa:', response.data);
+  
       if (response.status === 200) {
-        router.push('/success');
+        router.push('/login'); // Navegación si todo es correcto
       }
     } catch (error) {
-      console.error('Error al hacer la solicitud:', error);
+      if (error.response) {
+        console.error('Error del servidor:', error.response.data);
+      } else if (error.request) {
+        console.error('No hay respuesta del servidor:', error.request);
+      } else {
+        console.error('Error en la configuración:', error.message);
+      }
     }
   };
+  
 
   const tipoDocumento = watch('tipoDocumento', 'V');
 

@@ -28,7 +28,7 @@ const NavBar = ({ companyName, buttons, bgColor, urlImg, colorTextDrawell }) => 
               </Link>
             ) : (
               <Link href= {urlImg.enlace} passHref>
-                <Image src={urlImg.url} alt="Logo" width={100} height={50} />
+                <Image src={urlImg.url} alt="Logo" width={200} height={50} />
               </Link>
             )}
         </Box>
