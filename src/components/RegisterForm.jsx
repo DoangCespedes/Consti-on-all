@@ -39,7 +39,7 @@ export default function RegisterForm() {
       console.log('Respuesta exitosa:', response.data);
   
       if (response.status === 200) {
-        router.push('/login'); // Navegación si todo es correcto
+        router.push('/login'); 
       }
     } catch (error) {
       if (error.response) {
