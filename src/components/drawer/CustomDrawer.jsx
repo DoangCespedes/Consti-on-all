@@ -1,14 +1,10 @@
-'use client'
+'use client';
 
-import React, { createContext, useState } from 'react';
+import { useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -18,8 +14,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import Link from 'next/link';
+import icons from '../../utils/icons'; // Importa el archivo centralizado de iconos
 
 const drawerWidth = 240;
 
@@ -30,6 +26,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
+  backgroundColor: '#213555', // Cambiar color de fondo
+  color: '#fff' 
 });
 
 const closedMixin = (theme) => ({
@@ -42,38 +40,16 @@ const closedMixin = (theme) => ({
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
+  backgroundColor: '#213555', // Cambiar color de fondo
+  color: '#fff' 
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between', // Espaciado entre elementos
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  variants: [
-    {
-      props: ({ open }) => open,
-      style: {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-      },
-    },
-  ],
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -101,7 +77,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function CustomDrawer({ children }) {
+export default function CustomDrawer({ children, menuOptions = [] }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
@@ -110,147 +86,92 @@ export default function CustomDrawer({ children }) {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      {/* <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={[
-              {
-                marginRight: 5,
-              },
-              open && { display: 'none' },
-            ]}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <Drawer variant="permanent" open={open} >
-        <DrawerHeader sx={{marginTop:'3rem'}}>
-          <IconButton onClick={handleDrawer}>
+    <Box sx={{ display: 'flex'}}>
+      {/* Botón superior para abrir/cerrar el menú */}
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: theme.zIndex.drawer + 1,
+          p: 1,
+          borderBottom: `1px solid ${theme.palette.divider}`,
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <IconButton onClick={handleDrawer} sx={{ color: '#ffffff' }}> {open ? <MenuIcon /> : <ChevronRightIcon />} </IconButton>
+      </Box>
+
+      <Drawer variant="permanent" open={open} sx={{ backgroundColor: theme.palette.background.default }}>
+        <DrawerHeader sx={{marginTop:'4rem'}}>
+          <IconButton onClick={handleDrawer} sx={{ color: '#ffffff' }}>
             {open === false ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                  },
-                  open
-                    ? {
-                        justifyContent: 'initial',
-                      }
-                    : {
-                        justifyContent: 'center',
+          {/* Evitar errores si menuOptions es indefinido */}
+          {menuOptions.length > 0 ? (
+            menuOptions.map((option) => {
+              const Icon = icons[option.icon]; // Busca el icono dinámicamente
+              return (
+                <ListItem key={option.label} disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    component={Link}
+                    href={option.route} // Cambia "to" por "href" para Next.js
+                    sx={[
+                      {
+                        minHeight: 48,
+                        px: 2.5,
                       },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: 'center',
-                    },
-                    open
-                      ? {
-                          mr: 3,
-                        }
-                      : {
-                          mr: 'auto',
-                        },
-                  ]}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
+                      open
+                        ? {
+                            justifyContent: 'initial',
+                          }
+                        : {
+                            justifyContent: 'center',
+                          },
+                    ]}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        justifyContent: 'center',
+                        mr: open ? 3 : 'auto',
+                        color:'#fff'
+                      }}
+                    >
+                      {Icon ? <Icon /> : null} {/* Renderiza el icono si existe */}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={option.label}
+                      sx={[
+                        open
+                          ? {
+                              opacity: 1,
+                            }
+                          : {
+                              opacity: 0,
+                            },
+                      ]}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })
+          ) : (
+            <ListItem>
+              <ListItemText primary="No options available" />
             </ListItem>
-          ))}
+          )}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                  },
-                  open
-                    ? {
-                        justifyContent: 'initial',
-                      }
-                    : {
-                        justifyContent: 'center',
-                      },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: 'center',
-                    },
-                    open
-                      ? {
-                          mr: 3,
-                        }
-                      : {
-                          mr: 'auto',
-                        },
-                  ]}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 , marginBottom: 2 }}>
-        <Typography sx={{ marginBottom: 2 }}>
-          
-          {children}
-        </Typography>
-        
-      </Box>  */}
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {children}
+      </Box>
     </Box>
   );
 }

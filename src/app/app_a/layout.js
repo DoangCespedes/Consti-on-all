@@ -14,6 +14,12 @@ export default function Layout({ children }) {
   const bgColor = "#F2F2F2"; // Color de fondo opcional
   const colorTextDrawell = "#000"
 
+
+  const menuOptions = [
+    { label: 'Home', route: '/app_e/inicio', icon: 'HomeIcon' },
+    { label: 'Settings', route: '/settings', icon: 'SettingsIcon' },
+    { label: 'Profile', route: '/profile', icon: 'PersonIcon' },
+  ];
   return (
     <div className={styles.bodyLayout}> 
       <NavBar
@@ -23,7 +29,7 @@ export default function Layout({ children }) {
         colorTextDrawell={colorTextDrawell}
       />
       <div>
-        <CustomDrawer style={{marginTop:'5rem'}}/>
+        <CustomDrawer style={{marginTop:'5rem'}} menuOptions={menuOptions}/>
       </div>
       <div style={{padding:'5rem'}}>
         {children}
