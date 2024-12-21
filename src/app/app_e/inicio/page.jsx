@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 // import { HeaderButtons } from './HeaderButtons';
 // import { InboxTable } from './InboxTable';
@@ -6,18 +8,6 @@ import { HeaderButtons } from '@/components/cards/HeaderButtons';
 import { InboxTable } from '@/components/tables/InboxTable';
 
 const inicio = () => {
-  // const headerButtons = [
-  //   { title: 'Solicitudes', color: '#213555',
-  //     //  onClick: () => alert('Ir a Solicitudes') 
-  //   },
-  //   { title: 'Declaraciones', color: '#213555',
-  //     //  onClick: () => alert('Ir a Declaraciones') 
-  //   },
-  //   { title: 'Notificaciones', color: '#FFE001',
-  //     //  onClick: () => alert('Ir a Notificaciones') 
-  //   },
-  // ];
-
   const buttons = [
     {
       title: 'Servicios',
@@ -32,8 +22,45 @@ const inicio = () => {
       ],
       onChange: (e) => console.log('Seleccionaste:', e.target.value),
     },
+    {
+      title: 'Servicios',
+      color: '#4caf50',
+      iconColor: '#4caf50',
+      dropdownOptions: [
+        'Atención Médica Primaria',
+        'Reembolso de Salud',
+        'Carta Aval',
+        'Emergencia',
+        'Orden de Farmacia',
+      ],
+      onChange: (e) => console.log('Seleccionaste:', e.target.value),
+    },
+    {
+      title: 'Servicios',
+      color: '#4caf',
+      iconColor: '#4caf',
+      dropdownOptions: [
+        'Atención Médica Primaria',
+        'Reembolso de Salud',
+        'Carta Aval',
+        'Emergencia',
+        'Orden de Farmacia',
+      ],
+      onChange: (e) => console.log('Seleccionaste:', e.target.value),
+    },
+    {
+      title: 'Proveedor',
+      color: '#fe2b5b',
+      iconColor: '#fe2b5b',
+      dropdownOptions: [
+        'Asistanet',
+        'Caravana',
+        'Dentalnet',
+        'Botimarket',
+      ],
+      onChange: (e) => console.log('Seleccionaste:', e.target.value),
+    },
   ];
-
   const inboxItems = [
     {
       service: 'Guilmaris Josefina Brito Perez',

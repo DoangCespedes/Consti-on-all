@@ -16,7 +16,7 @@ export default function Layout({ children }) {
 
 
   const menuOptions = [
-    { label: 'Home', route: '/app_e/inicio', icon: 'HomeIcon' },
+    { label: 'Home', route: '/app_a/inicio', icon: 'HomeIcon' },
     { label: 'Settings', route: '/settings', icon: 'SettingsIcon' },
     { label: 'Profile', route: '/profile', icon: 'PersonIcon' },
   ];
