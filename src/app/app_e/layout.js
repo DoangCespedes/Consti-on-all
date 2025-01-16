@@ -4,6 +4,7 @@ import NavBar from '@/components/navbars/NavBar';
 import styles from './layout.module.css';
 import CustomDrawer from '@/components/drawer/CustomDrawer';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Layout({ children }) {
   const botonesNavBar = [
@@ -15,64 +16,37 @@ export default function Layout({ children }) {
   const colorTextDrawell = "#000";
 
   const menuOptions = [
-    { label: 'Home', route: '/app_e/inicio', icon: 'HomeIcon' },
-    { label: 'Settings', route: '/settings', icon: 'SettingsIcon' },
+    { label: 'Inicio', route: '/app_e', icon: 'HomeIcon' },
+    { label: 'Solicitudes', route: '/app_e/solicitudes', icon: 'DifferenceIcon' },
+    { label: 'Administración de perfiles', route: '/app_e/administracion_perfiles', icon: 'SettingsIcon' },
+    { label: 'Administración de usuarios', icon: 'Diversity3Icon', 
+      children: [
+      { label: 'Crear empleado', route: '/app_e/administracion_usuarios/crear_empleado' },
+      { label: 'Cambiar contrasena', route: '/app_e/administracion_usuarios/cambiar_clave' },
+    ], },
     { label: 'Profile', route: '/profile', icon: 'PersonIcon' },
   ];
 
   return (
-    <div className={styles.bodyLayout}>
-      <NavBar
-        companyName={companyName}
-        buttons={botonesNavBar}
-        bgColor={bgColor}
-        colorTextDrawell={colorTextDrawell}
-      />
-      <div>
-        <CustomDrawer style={{ marginTop: '5rem' }} menuOptions={menuOptions} />
-      </div>
-      <div style={{ padding: '5rem', position: 'relative' }}>
-        {/* Contenedor responsivo */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            position: 'absolute',
-            top: '2rem',
-            right: '1rem',
-          }}
-        >
-        <Link href='/app_e/'>
-          <button
-            style={{
-              backgroundColor: '#01204E',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '10px',
-              padding: '10px 15px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              transition: 'all 0.3s ease',
-              zIndex: 10,
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = '#014A9F';
-              e.currentTarget.style.boxShadow = '0 6px 8px rgba(0, 0, 0, 0.15)';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = '#01204E';
-              e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            }}
-          >
-            
-            Volver
-          </button>
-        </Link>
+    <>
+      <Head>
+        <link rel="icon" href="assets/favicon.ico" />
+      </Head>
+      <div className={styles.bodyLayout}>
+        <NavBar
+          companyName={companyName}
+          buttons={botonesNavBar}
+          bgColor={bgColor}
+          colorTextDrawell={colorTextDrawell}
+        />
+        <div>
+          <CustomDrawer style={{ marginTop: '5rem' }} menuOptions={menuOptions} />
         </div>
-        {children}
+        <div style={{ padding: '5rem', position: 'relative' }}>
+        
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

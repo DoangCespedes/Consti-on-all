@@ -7,6 +7,7 @@ import { TextField, Button, IconButton, Box, Typography, Container, MenuItem, Fo
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import SelectCustomer from './select/SelectCustomer';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -78,15 +79,18 @@ export default function LoginForm() {
             <Grid item xs={4}>
               <FormControl fullWidth>
                 <InputLabel>Tipo</InputLabel>
-                <Select
-                  value={tipoDocumento}
+                
+                <SelectCustomer
                   onChange={handleChange}
+                  options={[{label: 'V', value: 'V'},
+                    {label:'J', value:'J'},
+                    {label:'E', value:'E' }]}
+                  // placeholder="Tipo"
                   label="Tipo"
-                >
-                  {['V', 'J', 'E'].map((tipo) => (
-                    <MenuItem key={tipo} value={tipo}>{tipo}</MenuItem>
-                  ))}
-                </Select>
+                />
+
+              
+
                 {errors.tipoDocumento && <Typography color="error">{errors.tipoDocumento.message}</Typography>}
               </FormControl>
             </Grid>

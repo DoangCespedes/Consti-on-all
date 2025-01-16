@@ -7,6 +7,7 @@ import { TextField, Button, IconButton, Box, Typography, Container, MenuItem, Fo
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import SelectCustomer from './select/SelectCustomer';
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -92,11 +93,14 @@ export default function RegisterForm() {
             <Grid item xs={4}>
               <FormControl fullWidth>
                 <InputLabel>Tipo</InputLabel>
-                <Select value={tipoDocumento} onChange={handleChange} label="Tipo">
-                  {['V', 'J', 'E'].map((tipo) => (
-                    <MenuItem key={tipo} value={tipo}>{tipo}</MenuItem>
-                  ))}
-                </Select>
+                <SelectCustomer
+                  onChange={handleChange}
+                  options={[{label: 'V', value: 'V'},
+                    {label:'J', value:'J'},
+                    {label:'E', value:'E' }]}
+                  // placeholder="Tipo"
+                  label="Tipo"
+                />
               </FormControl>
             </Grid>
 

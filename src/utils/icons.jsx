@@ -8,6 +8,9 @@ import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import DifferenceIcon from '@mui/icons-material/Difference';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 
 const icons = {
   HomeIcon, //casa 
@@ -20,6 +23,9 @@ const icons = {
   CloudDownloadIcon, //descarga
   LocalPrintshopIcon, // impresora
   PieChartIcon, //torta
+  Diversity3Icon, //Grupo
+  DifferenceIcon, //Solicitud
+  CreateNewFolderIcon, //Carpeta con mas
    
 };
 

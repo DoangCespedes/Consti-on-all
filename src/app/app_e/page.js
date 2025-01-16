@@ -10,10 +10,10 @@ import dentalnet from '../../../public/assets/Logo_Dentalnet.png';
 const AppE = ({ images = [] }) => {
   // Si no se pasan imágenes, usa una por defecto
   const defaultImages = [
-    { src: asistanet, alt: 'Caravana', link: '/app_e/inicio' },
-    { src: caravana, alt: 'Caravana', link: '/app_e/inicio' },
-    { src: dentalnet, alt: 'Caravana', link: '/app_e/inicio' },
-    { src: caravana, alt: 'Caravana', link: '/app_e/inicio' },
+    { src: asistanet, alt: 'Caravana', link: '/app_e/crear_solicitud' },
+    { src: caravana, alt: 'Caravana', link: '/app_e/crear_solicitud' },
+    { src: dentalnet, alt: 'Caravana', link: '/app_e/crear_solicitud' },
+    { src: caravana, alt: 'Caravana', link: '/app_e/crear_solicitud' },
   ];
 
   const imageList = images.length > 0 ? images : defaultImages;

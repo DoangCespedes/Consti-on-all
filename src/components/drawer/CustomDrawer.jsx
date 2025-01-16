@@ -7,17 +7,17 @@ import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
 import Link from 'next/link';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import icons from '../../utils/icons'; // Importa el archivo centralizado de iconos
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -26,8 +26,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-  backgroundColor: '#213555', // Cambiar color de fondo
-  color: '#fff' 
+  backgroundColor: '#213555',
+  color: '#fff',
 });
 
 const closedMixin = (theme) => ({
@@ -40,125 +40,127 @@ const closedMixin = (theme) => ({
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
-  backgroundColor: '#213555', // Cambiar color de fondo
-  color: '#fff' 
+  backgroundColor: '#213555',
+  color: '#fff',
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between', // Espaciado entre elementos
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-}));
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme }) => ({
+  ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
-    variants: [
-      {
-        props: ({ open }) => open,
-        style: {
-          ...openedMixin(theme),
-          '& .MuiDrawer-paper': openedMixin(theme),
-        },
-      },
-      {
-        props: ({ open }) => !open,
-        style: {
-          ...closedMixin(theme),
-          '& .MuiDrawer-paper': closedMixin(theme),
-        },
-      },
-    ],
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
   }),
 );
 
-export default function CustomDrawer({ children, menuOptions = [] }) {
+export default function HoverDrawer({ children, menuOptions = [] }) {
   const theme = useTheme();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState({});
 
-  const handleDrawer = () => {
-    setOpen(!open);
+  const toggleDropdown = (label) => {
+    setDropdownOpen((prev) => ({ ...prev, [label]: !prev[label] }));
   };
 
   return (
-    <Box sx={{ display: 'flex'}}>
-      {/* Botón superior para abrir/cerrar el menú */}
-      <Box
-        sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: theme.zIndex.drawer + 1,
-          p: 1,
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-        }}
+    <Box sx={{ display: 'flex' }}>
+      {/* <DrawerHeader sx={{ marginTop: '4rem' }}></DrawerHeader> */}
+      <Drawer
+        variant="permanent"
+        open={open}
+        onMouseEnter={() => setOpen(true)} // Abre el Drawer al hacer hover
+        onMouseLeave={() => setOpen(false)} // Cierra el Drawer al quitar el puntero
+        
       >
-        <IconButton onClick={handleDrawer} sx={{ color: '#ffffff' }}> {open ? <MenuIcon /> : <ChevronRightIcon />} </IconButton>
-      </Box>
-
-      <Drawer variant="permanent" open={open} sx={{ backgroundColor: theme.palette.background.default }}>
-        <DrawerHeader sx={{marginTop:'4rem'}}>
-          <IconButton onClick={handleDrawer} sx={{ color: '#ffffff' }}>
-            {open === false ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {/* Evitar errores si menuOptions es indefinido */}
+        <List
+          sx={{ marginTop: '4rem' }}
+        >
           {menuOptions.length > 0 ? (
             menuOptions.map((option) => {
               const Icon = icons[option.icon]; // Busca el icono dinámicamente
+              const hasChildren = option.children && option.children.length > 0;
+
               return (
-                <ListItem key={option.label} disablePadding sx={{ display: 'block' }}>
-                  <ListItemButton
-                    component={Link}
-                    href={option.route} // Cambia "to" por "href" para Next.js
-                    sx={[
-                      {
-                        minHeight: 48,
-                        px: 2.5,
-                      },
-                      open
-                        ? {
-                            justifyContent: 'initial',
-                          }
-                        : {
-                            justifyContent: 'center',
-                          },
-                    ]}
-                  >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        justifyContent: 'center',
-                        mr: open ? 3 : 'auto',
-                        color:'#fff'
-                      }}
-                    >
-                      {Icon ? <Icon /> : null} {/* Renderiza el icono si existe */}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={option.label}
+                <div key={option.label}>
+                  <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItemButton
+                      onClick={hasChildren ? () => toggleDropdown(option.label) : undefined}
+                      component={hasChildren ? undefined : Link}
+                      href={hasChildren ? undefined : option.route}
                       sx={[
+                        {
+                          minHeight: 48,
+                          px: open ? 2.5 : 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                        },
                         open
                           ? {
-                              opacity: 1,
+                              justifyContent: 'flex-start',
                             }
                           : {
-                              opacity: 0,
+                              justifyContent: 'center',
                             },
                       ]}
-                    />
-                  </ListItemButton>
-                </ListItem>
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#fff',
+                          mr: open ? 3 : 0,
+                        }}
+                      >
+                        {Icon ? <Icon /> : null}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={option.label}
+                        sx={[
+                          {
+                            whiteSpace: 'normal',
+                            wordBreak: 'break-word',
+                            maxWidth: open ? drawerWidth - 50 : 0,
+                            display: open ? 'block' : 'none',
+                          },
+                        ]}
+                      />
+                      {hasChildren && open && (
+                        <IconButton sx={{ color: '#ffffff' }}>
+                          {dropdownOpen[option.label] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                        </IconButton>
+                      )}
+                    </ListItemButton>
+                  </ListItem>
+                  {hasChildren && open &&  (
+                    <Collapse in={dropdownOpen[option.label]} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {option.children.map((child) => (
+                          <ListItemButton
+                            key={child.label}
+                            component={Link}
+                            href={child.route}
+                            sx={{
+                              pl: 4,
+                              color: '#ffffff',
+                            }}
+                          >
+                            <ListItemText primary={child.label} />
+                          </ListItemButton>
+                        ))}
+                      </List>
+                    </Collapse>
+                  )}
+                </div>
               );
             })
           ) : (

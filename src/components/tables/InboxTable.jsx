@@ -1,98 +1,129 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Chip,
+  IconButton,
+  Box,
+  Typography,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import HistoryIcon from "@mui/icons-material/History";
 
-const InboxItem = ({ orderNumber, service, provider, policy, ci, insuredName, status, date }) => (
-  <TableRow>
-    <TableCell>{orderNumber}</TableCell>
-    <TableCell>{service}</TableCell>
-    <TableCell>{provider}</TableCell>
-    <TableCell>{policy}</TableCell>
-    <TableCell>{ci}</TableCell>
-    <TableCell>{insuredName}</TableCell>
-    <TableCell>
-      <Chip label={status.label} sx={{ backgroundColor: status.color, color: '#fff' }} />
-    </TableCell>
-    <TableCell>{date}</TableCell>
-  </TableRow>
-);
+export const InboxTable = ({ items, selectedStatus, selectedService }) => {
+  // Detecta si es móvil
+  const isMobile = window.innerWidth <= 768;
 
-export const InboxTable = ({ items }) => (
-  <TableContainer component={Paper} sx={{ mt: 4 }}>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Nro de Orden</TableCell>
-          <TableCell>Tipo de Servicio</TableCell>
-          <TableCell>Proveedor</TableCell>
-          <TableCell>Poliza</TableCell>
-          <TableCell>CI del Asegurado</TableCell>
-          <TableCell>Nom. Asegurado</TableCell>
-          <TableCell>Estatus</TableCell>
-          <TableCell>Fecha</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {items.map((item, index) => (
-          <InboxItem key={index} {...item} />
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-);
+  // Filtrado de elementos según los filtros recibidos
+  const filteredItems = items.filter((item) => {
+    const matchesStatus =
+      !selectedStatus || item.status.value === selectedStatus;
+    const matchesService =
+      !selectedService || item.service === selectedService;
+    return matchesStatus && matchesService;
+  });
 
-// Datos ficticios completos para la tabla
-const data = [
-  {
-    orderNumber: 'ORD12345',
-    service: 'Reparación de Motor',
-    provider: 'AutoServ Proveedor 1',
-    policy: 'POL123456',
-    ci: 'V12345678',
-    insuredName: 'Juan Pérez',
-    status: { label: 'Pendiente', color: 'orange' },
-    date: '19/12/2024'
-  },
-  {
-    orderNumber: 'ORD12346',
-    service: 'Reemplazo de Cristales',
-    provider: 'Cristales Rápidos',
-    policy: 'POL123457',
-    ci: 'V23456789',
-    insuredName: 'Ana López',
-    status: { label: 'En Proceso', color: 'blue' },
-    date: '20/12/2024'
-  },
-  {
-    orderNumber: 'ORD12347',
-    service: 'Alineación y Balanceo',
-    provider: 'Neumáticos 4x4',
-    policy: 'POL123458',
-    ci: 'V34567890',
-    insuredName: 'Carlos Sánchez',
-    status: { label: 'Finalizado', color: 'green' },
-    date: '18/12/2024'
-  },
-  {
-    orderNumber: 'ORD12348',
-    service: 'Cambio de Aceite',
-    provider: 'LubriFast',
-    policy: 'POL123459',
-    ci: 'V45678901',
-    insuredName: 'María García',
-    status: { label: 'Pendiente', color: 'orange' },
-    date: '21/12/2024'
-  },
-  {
-    orderNumber: 'ORD12349',
-    service: 'Reparación de Frenos',
-    provider: 'Frenos Express',
-    policy: 'POL123460',
-    ci: 'V56789012',
-    insuredName: 'José Martínez',
-    status: { label: 'En Proceso', color: 'blue' },
-    date: '22/12/2024'
-  }
-];
+  console.log(selectedStatus ,  'Aqui de verdad fue' )
 
-// Usar el componente InboxTable pasando los datos ficticios
-export const Inbox = () => <InboxTable items={data} />;
+  return (
+    <TableContainer component={Paper} sx={{ mt: 4, boxShadow: 3 }}>
+      {!isMobile ? (
+        <Table>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
+              <TableCell>Nro de Orden</TableCell>
+              <TableCell>Tipo de Servicio</TableCell>
+              <TableCell>Proveedor</TableCell>
+              <TableCell>Poliza</TableCell>
+              <TableCell>CI del Asegurado</TableCell>
+              <TableCell>Nom. Asegurado</TableCell>
+              <TableCell>Estatus</TableCell>
+              <TableCell>Fecha</TableCell>
+              <TableCell align="center">Acciones</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredItems.map((item, index) => (
+              <TableRow key={index} hover>
+                <TableCell>{item.orderNumber}</TableCell>
+                <TableCell>{item.service}</TableCell>
+                <TableCell>{item.provider}</TableCell>
+                <TableCell>{item.policy}</TableCell>
+                <TableCell>{item.ci}</TableCell>
+                <TableCell>{item.insuredName}</TableCell>
+                <TableCell>
+                  <Chip
+                    label={item.status.label}
+                    sx={{
+                      backgroundColor: item.status.color,
+                      color: "#fff",
+                      fontWeight: "bold",
+                    }}
+                  />
+                </TableCell>
+                <TableCell>{item.date}</TableCell>
+                <TableCell align="center">
+                  <IconButton size="small" title="Editar">
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                  <IconButton size="small" title="Historial">
+                    <HistoryIcon fontSize="small" />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <Box>
+          {filteredItems.map((item, index) => (
+            <Paper key={index} sx={{ mb: 2, p: 2 }}>
+              <Typography variant="subtitle1" fontWeight="bold">
+                Nro de Orden: {item.orderNumber}
+              </Typography>
+              <Typography variant="body2">
+                Tipo de Servicio: {item.service}
+              </Typography>
+              <Typography variant="body2">
+                Proveedor: {item.provider}
+              </Typography>
+              <Typography variant="body2">Poliza: {item.policy}</Typography>
+              <Typography variant="body2">
+                CI del Asegurado: {item.ci}
+              </Typography>
+              <Typography variant="body2">
+                Nom. Asegurado: {item.insuredName}
+              </Typography>
+              <Typography variant="body2">
+                Estatus:{" "}
+                <Chip
+                  label={item.status.label}
+                  sx={{
+                    backgroundColor: item.status.color,
+                    color: "#fff",
+                    fontWeight: "bold",
+                  }}
+                  size="small"
+                />
+              </Typography>
+              <Typography variant="body2">Fecha: {item.date}</Typography>
+              <Box mt={1}>
+                <IconButton size="small" title="Editar">
+                  <EditIcon fontSize="small" />
+                </IconButton>
+                <IconButton size="small" title="Historial">
+                  <HistoryIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            </Paper>
+          ))}
+        </Box>
+      )}
+    </TableContainer>
+  );
+};
