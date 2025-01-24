@@ -1,19 +1,96 @@
-'use client';
+'use client'
 
-import React from 'react';
-// import { HeaderButtons } from './HeaderButtons';
-// import { InboxTable } from './InboxTable';
-import { Container, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Container,
+  Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  FormControlLabel,
+  Box,
+  CardContent,
+  Card,
+} from '@mui/material';
 import { HeaderButtons } from '@/components/cards/HeaderButtons';
-import { InboxTable } from '@/components/tables/InboxTable';
-// import Slider from '@/components/sliderCards/Slider';
-import ResponsiveSlider from '@/components/sliderCards/ResponsiveSlider';
+import SimpleTable from '@/components/tables/simpleTable/SimpleTable';
 
-const crear_solicitud = () => {   
+const CrearSolicitud = () => {
+  const [tipoSolicitud, setTipoSolicitud] = useState('');
+  const [dirigidoA, setDirigidoA] = useState('');
+  const [proveedor, setProveedor] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const TestTitular = 'Megan Fox'
+
+  const handleRowSelect = (row) => {
+    setSelectedRow(row); // Actualizamos el estado del padre con la fila seleccionada
+    console.log('Fila seleccionada en el padre:', row.name); // Mostramos la fila en la consola
+  };
+
+   // Manejar cambios en los valores seleccionados
+  const handleTipoSolicitudChange = (newValue) => {
+    setTipoSolicitud(newValue);
+  };
+   // Manejar cambios en los valores seleccionados 
+  const handleDirigidoChange = (newValue) => {
+    setDirigidoA(newValue);
+  };
+
+  const handleProveedorChange = (newValue) => {
+    setProveedor(newValue);
+  };
+
+  // Estado para los campos del formulario
+  const [formData, setFormData] = useState({
+    asegurado: '',
+    ciudad: '',
+    tipoPoliza: '',
+    enfermedad: '',
+    subServicio: '',
+    especialidad: '',
+    proveedorSalud: '',
+    telefono: '',
+    correo: '',
+    recados: {
+      cedula: false,
+      informeMedico: false,
+      ordenInterconsulta: false,
+      referencia: false,
+    },
+  });
+
+  // Manejar cambios en los campos
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData({
+      ...formData,
+      recados: { ...formData.recados, [name]: checked },
+    });
+  };
+
+  // Abrir y cerrar modal
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
   const buttons = [
-  
     {
-      title: 'Crear solicitud',
+      title: 'Tipo de solicitud',
       color: '#4caf50',
       iconColor: '#4caf50',
       dropdownOptions: [
@@ -23,148 +100,273 @@ const crear_solicitud = () => {
         { label: 'Emergencia', value: 'emergencia' },
         { label: 'Orden de Farmacia', value: 'orden_farmacia' },
       ],
-      onChange: (e) => console.log('Seleccionaste:', e.target.value),
+      onChange: (e) => handleTipoSolicitudChange(e.target.value),
     },
-    {
-      title: 'Proveedor',
-      color: '#4caf',
-      iconColor: '#4caf',
-      dropdownOptions: [
-        { label: 'Asistanet', value: 'asistanet' },
-        { label: 'Dentalnet', value: 'dentalnet' },
-        { label: 'Caravana', value: 'caravana' },
-        { label: 'Oftalnet', value: 'oftalnet' },
-        { label: 'RPF', value: 'rpf' },
-      ],
-      onChange: (e) => console.log('Seleccionaste:', e.target.value),
-    },
-    {
-      title: 'Estatus',
-      color: '#fe2b5b',
-      iconColor: '#fe2b5b',
-      dropdownOptions: [
-        { label: 'Procesado', value: 'procesado' },
-        { label: 'En proceso', value: 'en_proceso' },
-        { label: 'Pendiente', value: 'pendiente' },
-        { label: 'Rechazado', value: 'rechazado' },
-      ],
-      onChange: (e) => console.log('Seleccionaste:', e.target.value),
-    },
-    
   ];
-  const inboxItems = [
+  const buttons2 = [
     {
-      orderNumber: '1964567-0',
-      service: 'Atención Médica Primaria',
-      provider: 'Asistanet',
-      policy: '12345678',
-      ci: 'V-12345678',
-      insuredName: 'Gabriela Josefina Brito Perez',
-      status: { label: 'PROCESADO', color: '#809D3C' },
-      date: '18-12-2024 02:22:42 pm',
+      title: 'A quien va dirigido',
+      color: '#124567',
+      iconColor: '#124567',
+      dropdownOptions: [
+        { label: 'Solicitar un servicio para mi', value: 'titular' },
+        { label: 'Solicitar un servicio para mis dependientes', value: 'beneficiario' },
+      ],
+      onChange: (e) => handleDirigidoChange(e.target.value),
     },
-    {
-      orderNumber: '1964566-0',
-      service: 'Emergencia',
-      provider: 'Caravana',
-      policy: '87654321',
-      ci: 'V-87654321',
-      insuredName: 'Andrea Carolina D\'Gregorio Brito',
-      status: { label: 'EN PROCESO', color: '#213555' },
-      date: '17-12-2024 04:21:24 pm',
-    },
-    {
-      orderNumber: '1964565-0',
-      service: 'Orden de Farmacia',
-      provider: 'Botimarket',
-      policy: '45678912',
-      ci: 'V-45678912',
-      insuredName: 'D\'Gregorio Jesus',
-      status: { label: 'PENDIENTE', color: '#FFE001' },
-      date: '17-12-2024 03:23:50 pm',
-    },
-    {
-      orderNumber: '1964565-0',
-      service: 'Orden de Farmacia',
-      provider: 'Botimarket',
-      policy: '45678912',
-      ci: 'V-45678912',
-      insuredName: 'D\'Gregorio Jesus',
-      status: { label: 'RECHAZADO', color: '#F93827' },
-      date: '17-12-2024 03:23:50 pm',
-    },
-  //   {
-  //     "WORKFLOW_ID": 44933,
-  //     "STAGE_DATE": "05-01-2022 03:35:08 pm",
-  //     "TASK_ID": 102334,
-  //     "NONBRE": "Zulay  Arenales Rubio  - Nro. Liquidación: 1798665-0",
-  //     "STAGE_STATUS": "En Proceso",
-  //     "STATUS_FOR_COLORS": "En Proceso",
-  //     "COLOR": "primary",
-  //     "TOOLTIP": "Emergencia",
-  //     "STAGE_NAME": "Análisis de solicitud de Ingreso - Ingreso(Como Gerente del Proceso)",
-  //     "ICON": "local_hospital"
-  // },
   ];
 
-  // const sliderItems = [
-  //   { text: "Crear Solicitud", route: "/" },
-  //   { text: "Crear Proceso", route: "/about" },
-  //   { text: "Consultas", route: "/services" },
-  //   { text: "Consultas", route: "/services" },
-  //   { text: "Consultas", route: "/services" },
-  // ];
-
-  const items = [
-  { icon: "CreateNewFolderIcon", iconBackground: "#007BFF", text: "Crear Solicitud", route: "/folder" },
-  { icon: "CloudDownloadIcon", iconBackground: "#28A745", text: "Crear Proceso", route: "/home" },
-  { icon: "PeopleAltIcon", iconBackground: "#FFC107", text: "Consultas", route: "/settings" },
-  { icon: "DifferenceIcon", iconBackground: "#DC3545", text: "Crear notificaciones", route: "/favorites" },
-];
-
-// const items = [
-//   {
-//     icon: <CreateNewFolderIcon style={{ color: "white", fontSize: 32 }} />,
-//     text: "Crear notificaciones",
-//     iconBackground: "#007bff",
-//   },
-//   {
-//     icon: <CloudDownloadIcon style={{ color: "white", fontSize: 32 }} />,
-//     text: "Crear solicitudes",
-//     iconBackground: "#28a745",
-//   },
-//   {
-//     icon: <CloudDownloadIcon style={{ color: "white", fontSize: 32 }} />,
-//     text: "Ver consultas",
-//     iconBackground: "#ffc107",
-//   },
-// ];
-
+  const userData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
+  ];
+  
+  const userColumns = [
+    { field: 'id', headerName: 'ID' },
+    { field: 'name', headerName: 'Name' },
+    { field: 'email', headerName: 'Email' },
+    { field: 'status', headerName: 'Status' },
+  ];
 
   return (
     <Container>
       <Typography variant="h4" sx={{ mb: 4, textAlign: 'center' }}>
-        Bandeja de Entrada
+        Crear Solicitud
       </Typography>
-      <HeaderButtons buttons={buttons} />
+      
+      {/* Tarjeta que contiene los botones de selección */}
+      <Card sx={{ mb: 4, p: 2 }}>
+        <CardContent>
+          {tipoSolicitud === '' &&
+          
+            <HeaderButtons buttons={buttons} />
+          }
+
+          {tipoSolicitud !='' &&
+          
+            <HeaderButtons buttons={buttons2} />
+          }
+          
+          <Button variant="contained" color="primary" onClick={handleOpenModal}>
+            Solicitar Servicio
+          </Button>
+          <Button 
+            sx={{ marginLeft:'20rem'}}
+            variant="contained" 
+            color="primary" 
+            onClick={() => setTipoSolicitud('')}>
+            Volver a Seleccionar Servicio
+          </Button>
+
+          
+        </CardContent>
+      </Card>
+      {dirigidoA === 'beneficiario' && tipoSolicitud != '' &&
+
+      <Card sx={{ mb: 4, p: 2 }}>
+        <CardContent>
+        
+            <SimpleTable
+              title="User List"
+              columns={userColumns}
+              tableData={userData}
+              onRowSelect={handleRowSelect} // Pasamos la función al hijo
+            />
+  
+          
+
+          {selectedRow && (
+            <div style={{ marginTop: '20px' }}>
+              <h3>Detalles de la Fila Seleccionada:</h3>
+              <pre>{JSON.stringify(selectedRow, null, 2)}</pre>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    }
       {/* <InboxTable items={inboxItems} /> */}
-      {/* <div style={{width:'50rem', display:'flex', justifyContent:'center' }}> */}
-      <h1>Slider Component Example</h1>
-      {/* <Slider
-      items={items}
-      buttonStyles={{ backgroundColor: "secondary.main" }}
-      containerStyles={{ marginTop: "20px" }}
-      boxStyles={{
-        backgroundColor: "white",
-        color: "black",
-        minWidth: "200px",
-        height: "100px",
-      }}
-    /> */}
-    <ResponsiveSlider items={items} />
-    {/* </div> */}
+
+      <Dialog open={openModal} onClose={handleCloseModal} maxWidth="md" fullWidth sx={{marginTop:'3rem'}}>
+        <DialogTitle>Nueva Solicitud de {tipoSolicitud} para el {dirigidoA}:{dirigidoA === 'titular' ? TestTitular : selectedRow?.name || 'Sin seleccionar'}
+        </DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2}>
+            {/* Primera fila */}
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Asegurado"
+                name="asegurado"
+                value={formData.asegurado}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Ciudad"
+                name="ciudad"
+                value={formData.ciudad}
+                onChange={handleInputChange}
+              />
+            </Grid>
+
+            {/* Segunda fila */}
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <InputLabel>Tipo de Póliza</InputLabel>
+                <Select
+                  name="tipoPoliza"
+                  value={formData.tipoPoliza}
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value="colectiva1">Colectiva 1</MenuItem>
+                  <MenuItem value="colectiva2">Colectiva 2</MenuItem>
+                  <MenuItem value="individual">Individual</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            {/* Tercera fila */}
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Enfermedad</InputLabel>
+                <Select
+                  name="enfermedad"
+                  value={formData.enfermedad}
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value="enfermedad1">Enfermedad 1</MenuItem>
+                  <MenuItem value="enfermedad2">Enfermedad 2</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Sub Servicio</InputLabel>
+                <Select
+                  name="subServicio"
+                  value={formData.subServicio}
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value="sub1">Sub Servicio 1</MenuItem>
+                  <MenuItem value="sub2">Sub Servicio 2</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Especialidad / Estudio</InputLabel>
+                <Select
+                  name="especialidad"
+                  value={formData.especialidad}
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value="especialidad1">Especialidad 1</MenuItem>
+                  <MenuItem value="especialidad2">Especialidad 2</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <FormControl fullWidth>
+                <InputLabel>Proveedor de Salud</InputLabel>
+                <Select
+                  name="proveedorSalud"
+                  value={formData.proveedorSalud}
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value="proveedor1">Proveedor 1</MenuItem>
+                  <MenuItem value="proveedor2">Proveedor 2</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            {/* Cuarta fila */}
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Número de Teléfono"
+                name="telefono"
+                value={formData.telefono}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label="Correo Electrónico"
+                name="correo"
+                value={formData.correo}
+                onChange={handleInputChange}
+              />
+            </Grid>
+
+            {/* Quinta fila */}
+            <Grid item xs={12} md={6}>
+              <Typography variant="subtitle1">Recados a Consignar:</Typography>
+              <Box>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="cedula"
+                      checked={formData.recados.cedula}
+                      onChange={handleCheckboxChange}
+                    />
+                  }
+                  label="Cédula de Identidad"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="informeMedico"
+                      checked={formData.recados.informeMedico}
+                      onChange={handleCheckboxChange}
+                    />
+                  }
+                  label="Informe Médico"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="ordenInterconsulta"
+                      checked={formData.recados.ordenInterconsulta}
+                      onChange={handleCheckboxChange}
+                    />
+                  }
+                  label="Orden de Interconsulta"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="referencia"
+                      checked={formData.recados.referencia}
+                      onChange={handleCheckboxChange}
+                    />
+                  }
+                  label="Referencia e Indicaciones Médicas"
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography variant="subtitle1">Carga de Recados Requeridos:</Typography>
+              <Button variant="contained" component="label">
+                Examinar
+                <input hidden type="file" />
+              </Button>
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal} color="secondary">
+            Cancelar
+          </Button>
+          <Button variant="contained" color="primary">
+            Solicitar Orden {tipoSolicitud}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };
 
-export default crear_solicitud;
+export default CrearSolicitud;

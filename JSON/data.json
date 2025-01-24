@@ -1,0 +1,30 @@
+[
+    {
+      "title": "Servicios",
+      "table": [
+        {
+          "orderNumber": "1964561-0",
+          "service": "Atención Médica Primaria",
+          "provider": "Asistanet",
+          "policy": "12345678"
+        },
+        {
+          "orderNumber": "2164561-2",
+          "service": "Atención Médica Primaria",
+          "provider": "Asistanet",
+          "policy": "12345118"
+        },
+        {
+          "orderNumber": "1964562-0",
+          "service": "Emergencia",
+          "provider": "Caravana",
+          "policy": "87654321"
+        }
+      ],
+      "chart": {
+        "labels": ["January", "February", "March"],
+        "values": [5000, 7000, 6500]
+      }
+    }
+  ]
+  

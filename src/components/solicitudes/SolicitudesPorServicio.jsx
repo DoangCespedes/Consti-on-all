@@ -244,9 +244,9 @@ const countItemsByStatus = (selectedService) => {
     
     <>
     <Box sx={{ padding: 3 }}>
-      <Typography variant="h5" gutterBottom>
-        Buscar solicitudes por servicio
-      </Typography>
+      {/* <Typography variant="h5" gutterBottom>
+        Buscar solicitudes de ordenes por servicio
+      </Typography> */}
       
 
       {/* Filtros */}

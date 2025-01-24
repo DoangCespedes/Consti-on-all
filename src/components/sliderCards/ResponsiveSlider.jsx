@@ -10,7 +10,7 @@ const CustomArrow = ({ className, style, onClick }) => (
     className={className}
     style={{
       ...style,
-      background: "#1976d2", // Cambia el color aquí
+      background: "#c9c9c9", // Cambia el color aquí
       borderRadius: "50%",
       width: "40px",
       height: "40px",

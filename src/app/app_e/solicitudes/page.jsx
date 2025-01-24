@@ -5,7 +5,9 @@ import SolicitudesPorServicio from '@/components/solicitudes/SolicitudesPorServi
 const page = () => {
   return (
     <>
-        <h1>Solicitudes</h1>
+        <h1
+        style={{marginTop:'-20px'}}
+        >Buscar solicitudes de ordenes por servicio</h1>
         
             <SolicitudesPorServicio/>
         

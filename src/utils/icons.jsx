@@ -11,6 +11,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import DifferenceIcon from '@mui/icons-material/Difference';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 
 const icons = {
   HomeIcon, //casa 
@@ -26,6 +29,10 @@ const icons = {
   Diversity3Icon, //Grupo
   DifferenceIcon, //Solicitud
   CreateNewFolderIcon, //Carpeta con mas
+  DescriptionIcon, //description
+  AutorenewIcon, //Dos flechas (proceso)
+  NotificationAddIcon, //nueva notificacion
+  
    
 };
 

@@ -112,7 +112,7 @@ const Slider = ({ items = [], buttonStyles, containerStyles, boxStyles }) => {
                 {/* Ícono */}
                 <Box
                   sx={{
-                    backgroundColor: item.iconColor || "#007bff",
+                    // backgroundColor: item.iconColor || "#007bff",
                     borderRadius: "50%",
                     padding: 1,
                     display: "flex",

@@ -1,8 +1,16 @@
+"use client";
+
+import UserSearchComponent from '@/components/userSerchComponent/UserSerchComponent'
 import React from 'react'
 
 const cambiar_clave = () => {
+  
   return (
-    <div>Cambiar clave</div>
+    <div>
+      {/* <UserSearchForm onSearch={handleSearch} /> */}
+      <UserSearchComponent/>
+    </div>
+
   )
 }
 

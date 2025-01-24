@@ -1,6 +1,7 @@
 "use client";
 
 import UserSearchForm from "@/components/userSearchForm/UserSearchForm";
+import UserSearchComponent from "@/components/userSerchComponent/UserSerchComponent";
 import React from "react";
 // import UserSearchForm from "@/components/UserSearchForm";
 
@@ -12,7 +13,8 @@ const administracion_perfiles = () => {
 
   return (
     <div>
-      <UserSearchForm onSearch={handleSearch} />
+      {/* <UserSearchForm onSearch={handleSearch} /> */}
+      <UserSearchComponent/>
     </div>
   );
 };
