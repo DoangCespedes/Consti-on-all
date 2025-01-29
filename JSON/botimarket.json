@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Botimarket",
+        "table": [
+      {
+        "status": { "label": "PROCESADO", "color": "#809D3C", "value": "Procesados" },
+        "TiposDeServicio": "Farmacia",
+        "provedor": "Botimarket",
+        "fecha": "12/03/2025"
+      },
+      {
+        "status": { "label": "EN PROCESO", "color": "#213555", "value": "En proceso" },
+        "TiposDeServicio": "Farmacia",
+        "provedor": "Botimarket",
+        "fecha": "13/02/2025"
+      },
+      {
+        "status": { "label": "PENDIENTE", "color": "#FFE001", "value": "Pendientes" },
+        "TiposDeServicio": "Medicamentos Generales",
+        "provedor": "Botimarket",
+        "fecha": "01/02/2025"
+      },
+      {
+        "status": { "label": "RECHAZADO", "color": "#F93827", "value": "Rechazados" },
+        "TiposDeServicio": "Suministros Médicos",
+        "provedor": "Botimarket",
+        "fecha": "11/01/2025"
+      }
+    ],
+    "chart": {
+        "labels": ["Enero", "Febrero", "Marzo"],
+        "values": [364, 420, 398]
+      }    
+    }
+    
+]

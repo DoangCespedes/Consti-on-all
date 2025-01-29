@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Dentalnet",
+        "table": [
+      {
+        "status": { "label": "PROCESADO", "color": "#809D3C", "value": "Procesados" },
+        "TiposDeServicio": "Ambulatorios",
+        "provedor": "Dentalnet",
+        "fecha": "13/02/2025"
+      },
+      {
+        "status": { "label": "EN PROCESO", "color": "#213555", "value": "En proceso" },
+        "TiposDeServicio": "Ambulatorios",
+        "provedor": "Dentalnet",
+        "tipoDePoliza": "dental"
+      },
+      {
+        "status": { "label": "PENDIENTE", "color": "#FFE001", "value": "Pendientes" },
+        "TiposDeServicio": "Cirugía",
+        "provedor": "Dentalnet",
+        "fecha": "01/02/2025"
+      },
+      {
+        "status": { "label": "RECHAZADO", "color": "#F93827", "value": "Rechazados" },
+        "TiposDeServicio": "Implantes",
+        "provedor": "Dentalnet",
+        "fecha": "11/01/2025"
+      }
+    ],
+    "chart": {
+        "labels": ["Enero", "Febrero", "Marzo"],
+        "values": [1, 3, 2]
+      }    
+    }
+    
+]

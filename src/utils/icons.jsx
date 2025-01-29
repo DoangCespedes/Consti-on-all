@@ -14,6 +14,7 @@ import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 const icons = {
   HomeIcon, //casa 
@@ -32,8 +33,8 @@ const icons = {
   DescriptionIcon, //description
   AutorenewIcon, //Dos flechas (proceso)
   NotificationAddIcon, //nueva notificacion
-  
-   
+  AdminPanelSettingsIcon, //escudo y persona
+
 };
 
 export default icons;

@@ -1,0 +1,123 @@
+{
+    "Caravana": [
+      {
+        "numeroDeOrdenes": "907",
+        "TiposDeServicio": "Emergencia",
+        "provedor": "Clinica",
+        "tipoDePoliza": "hcmi"
+      },
+      {
+        "numeroDeOrdenes": "950",
+        "TiposDeServicio": "Consultas Generales",
+        "provedor": "Clinica",
+        "tipoDePoliza": "hcmi"
+      },
+      {
+        "numeroDeOrdenes": "980",
+        "TiposDeServicio": "Urgencias",
+        "provedor": "Hospital Central",
+        "tipoDePoliza": "emergencia"
+      }
+    ],
+    "Asistanet": [
+      {
+        "numeroDeOrdenes": "267",
+        "TiposDeServicio": "Atención Médica Primaria",
+        "provedor": "Clinica",
+        "tipoDePoliza": "hcmi"
+      },
+      {
+        "numeroDeOrdenes": "305",
+        "TiposDeServicio": "Atención Especializada",
+        "provedor": "Consultorio Privado",
+        "tipoDePoliza": "medica"
+      },
+      {
+        "numeroDeOrdenes": "289",
+        "TiposDeServicio": "Urgencias",
+        "provedor": "Clinica",
+        "tipoDePoliza": "urgencias"
+      }
+    ],
+    "RPF": [
+      {
+        "numeroDeOrdenes": "47",
+        "TiposDeServicio": "Funerarios",
+        "provedor": "Funeraria La Valles",
+        "tipoDePoliza": "funerarios"
+      },
+      {
+        "numeroDeOrdenes": "52",
+        "TiposDeServicio": "Funerarios",
+        "provedor": "Funeraria La Paz",
+        "tipoDePoliza": "funerarios"
+      },
+      {
+        "numeroDeOrdenes": "56",
+        "TiposDeServicio": "Traslado de Restos",
+        "provedor": "Funeraria El Buen Pastor",
+        "tipoDePoliza": "funerarios"
+      }
+    ],
+    "Dentalnet": [
+      {
+        "numeroDeOrdenes": "93",
+        "TiposDeServicio": "Ambulatorios",
+        "provedor": "Dentalnet",
+        "tipoDePoliza": "dental"
+      },
+      {
+        "numeroDeOrdenes": "98",
+        "TiposDeServicio": "Cirugía",
+        "provedor": "Dentalnet",
+        "tipoDePoliza": "dental"
+      },
+      {
+        "numeroDeOrdenes": "107",
+        "TiposDeServicio": "Implantes",
+        "provedor": "Dentalnet",
+        "tipoDePoliza": "dental"
+      }
+    ],
+    "Oftalnet": [
+      {
+        "numeroDeOrdenes": "43",
+        "TiposDeServicio": "Consulta Oftalmológica",
+        "provedor": "Oftalnet",
+        "tipoDePoliza": "oftalmologia"
+      },
+      {
+        "numeroDeOrdenes": "60",
+        "TiposDeServicio": "Cirugía de Vista",
+        "provedor": "Oftalnet",
+        "tipoDePoliza": "oftalmologia"
+      },
+      {
+        "numeroDeOrdenes": "70",
+        "TiposDeServicio": "Lentes de Contacto",
+        "provedor": "Oftalnet",
+        "tipoDePoliza": "oftalmologia"
+      }
+    ],
+    "Botimarket": [
+      {
+        "numeroDeOrdenes": "364",
+        "TiposDeServicio": "Farmacia",
+        "provedor": "Botimarket",
+        "tipoDePoliza": "farmacia"
+      },
+      {
+        "numeroDeOrdenes": "420",
+        "TiposDeServicio": "Medicamentos Generales",
+        "provedor": "Botimarket",
+        "tipoDePoliza": "farmacia"
+      },
+      {
+        "numeroDeOrdenes": "398",
+        "TiposDeServicio": "Suministros Médicos",
+        "provedor": "Botimarket",
+        "tipoDePoliza": "farmacia"
+      }
+    ]
+  }
+  

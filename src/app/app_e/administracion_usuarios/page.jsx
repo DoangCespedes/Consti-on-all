@@ -1,17 +1,28 @@
-import Link from 'next/link'
-import React from 'react'
+
+import Link from 'next/link';
 
 const administracion_usuarios = () => {
+  
+
+
   return (
     <>
+      
       <div>AdminUser</div>
-
-      <p> Buscar usuarios </p>
-      <button><Link href='/app_e/administracion_usuarios/cambiar_clave'>cambio de clave</Link></button>
-      <br/>
-      <button><Link href='/app_e/administracion_usuarios/crear_empleado'>cambio de clave</Link></button>
+      <p>Buscar usuarios</p>
+      <button>
+        <Link href="/app_e/administracion_usuarios/cambiar_clave">
+          Cambio de clave
+        </Link>
+      </button>
+      <br />
+      <button>
+        <Link href="/app_e/administracion_usuarios/crear_empleado">
+          Crear empleado
+        </Link>
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default administracion_usuarios
+export default administracion_usuarios;

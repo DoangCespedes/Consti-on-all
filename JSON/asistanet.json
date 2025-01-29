@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Asistanet",
+        "table": [
+      {
+        "status": { "label": "PROCESADO", "color": "#809D3C", "value": "Procesados" },
+        "TiposDeServicio": "Atención Médica Primaria",
+        "provedor": "Clinica",
+        "fecha": "13/02/2025"
+      },
+      {
+        "status": { "label": "EN PROCESO", "color": "#213555", "value": "En proceso" },
+        "TiposDeServicio": "Atención Especializada",
+        "provedor": "Consultorio Privado",
+        "fecha": "12/03/2025"
+      },
+      {
+        "status": { "label": "PENDIENTE", "color": "#FFE001", "value": "Pendientes" },
+        "TiposDeServicio": "Urgencias",
+        "provedor": "Clinica",
+        "fecha": "01/02/2025"
+      },
+      {
+        "status": { "label": "RECHAZADO", "color": "#F93827", "value": "Rechazados" },
+        "TiposDeServicio": "Urgencias",
+        "provedor": "Clinica",
+        "fecha": "11/01/2025"
+      }
+    ],
+    "chart": {
+        "labels": ["Enero", "Febrero", "Marzo"],
+        "values": [267, 305, 289]
+      }    
+    }
+    
+]

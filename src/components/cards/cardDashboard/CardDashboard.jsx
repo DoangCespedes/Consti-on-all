@@ -13,12 +13,13 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid'; // Para diseño responsivo
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import { Chip } from '@mui/material';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const CardDashboard = ({ title, tableData, chartData }) => {
   return (
-    <Card sx={{ maxWidth: 900, margin: '20px auto', padding: 2 }}>
+    <Card sx={{  margin: '20px auto', padding: 2 }}>
       <Typography variant="h5" component="div" gutterBottom>
         {title}
       </Typography>
@@ -26,24 +27,33 @@ const CardDashboard = ({ title, tableData, chartData }) => {
         {/* Grid para organización responsiva */}
         <Grid container spacing={2} alignItems="flex-start">
           {/* Tabla (50% en pantallas grandes, 100% en pantallas pequeñas) */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={8}>
             <TableContainer component={Paper}>
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell><strong>Order Number</strong></TableCell>
-                    <TableCell><strong>Service</strong></TableCell>
-                    <TableCell><strong>Provider</strong></TableCell>
-                    <TableCell><strong>Policy</strong></TableCell>
+                    <TableCell><strong>Estado</strong></TableCell>
+                    <TableCell><strong>Tipo de Servicio</strong></TableCell>
+                    <TableCell><strong>Proveedor</strong></TableCell>
+                    <TableCell><strong>Fecha</strong></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {tableData.map((row, index) => (
                     <TableRow key={index}>
-                      <TableCell>{row.orderNumber}</TableCell>
-                      <TableCell>{row.service}</TableCell>
-                      <TableCell>{row.provider}</TableCell>
-                      <TableCell>{row.policy}</TableCell>
+                      <TableCell>
+                        <Chip
+                          label={row.status.label} // Accede correctamente al label del status
+                          sx={{
+                            backgroundColor: row.status.color, // Usa el color del JSON
+                            color: "#fff", 
+                            fontWeight: "bold",
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{row.TiposDeServicio}</TableCell>
+                      <TableCell>{row.provedor}</TableCell>
+                      <TableCell>{row.fecha}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -52,7 +62,7 @@ const CardDashboard = ({ title, tableData, chartData }) => {
           </Grid>
 
           {/* Gráfico (50% en pantallas grandes, 100% en pantallas pequeñas) */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <Bar
               data={{
                 labels: chartData.labels,
@@ -74,7 +84,7 @@ const CardDashboard = ({ title, tableData, chartData }) => {
                   tooltip: { enabled: true },
                 },
               }}
-              style={{ height: '150px' }}
+              style={{ height: '12rem' }}
             />
           </Grid>
         </Grid>

@@ -11,22 +11,31 @@ export default function Layout({ children }) {
     { titulo: "Salir", enlace: "/", color: "#01204E" },
   ];
 
-  const companyName = { title: "HOME EMPLEADO", color: '#000', enlace: "/app_e" };
+  // const companyName = { title: "HOME EMPLEADO", color: '#000', enlace: "/app_e" };
+  const urlImg ={url:"/assets/LogoConsti.png", enlace:'/app_e'}; 
   const bgColor = "#F2F2F2";
   const colorTextDrawell = "#000";
 
   const menuOptions = [
     { label: 'Inicio', route: '/app_e', icon: 'HomeIcon' },
-    { label: 'Solicitudes', route: '/app_e/solicitudes', icon: 'DifferenceIcon' },
-    { label: 'Administración de perfiles', route: '/app_e/administracion_perfiles', icon: 'SettingsIcon' },
-    { label: 'Administración de usuarios', icon: 'Diversity3Icon', 
+    { label: 'Mi perfil', route: '/app_e/mi_perfil', icon: 'PersonIcon' },
+    { label: 'Gestion solicitudes', icon: 'DifferenceIcon', 
       children: [
-      { label: 'Crear empleado', route: '/app_e/administracion_usuarios/crear_empleado' },
-      { label: 'Cambiar contrasena', route: '/app_e/administracion_usuarios/cambiar_clave' },
+      { label: 'Crear solicitud', route: '/app_e/crear_solicitud' },
+      { label: 'Consultar solicitud', route: '/app_e/solicitudes' },
+      // { label: 'Agendar cita', route: '/app_e/crear_cita' },
     ], },
-    { label: 'Profile', route: '/profile', icon: 'PersonIcon' },
+    { label: 'Administración de usuarios', icon: 'AdminPanelSettingsIcon', 
+      children: [
+      { label: 'Crear', route: '/app_e/administracion_usuarios' },
+      { label: 'Consulta de usuarios', route: '/app_e/administracion_usuarios/crear_empleado' },
+      { label: 'Cambiar contrasena', route: '/app_e/administracion_usuarios/cambiar_clave' },
+      { label: 'Configuracion de perfiles', route: '/app_e/administracion_perfiles' },
+    ], },
+    { label: 'Consulta de usuarios', route: 'app_e/administracion_usuarios', icon: 'Diversity3Icon' },
+    
   ];
-
+  
   return (
     <>
       <Head>
@@ -34,7 +43,7 @@ export default function Layout({ children }) {
       </Head>
       <div className={styles.bodyLayout}>
         <NavBar
-          companyName={companyName}
+          urlImg={urlImg}
           buttons={botonesNavBar}
           bgColor={bgColor}
           colorTextDrawell={colorTextDrawell}

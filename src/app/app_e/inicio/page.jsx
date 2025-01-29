@@ -1,14 +1,10 @@
 'use client';
 
 import ResponsiveSlider from '@/components/sliderCards/ResponsiveSlider';
-import { InboxTable } from '@/components/tables/InboxTable';
 import { Container, Typography } from '@mui/material';
-import inboxItems from '../../../../JSON/inboxItems.json';
 import React from 'react';
 import CardDashboard from '@/components/cards/cardDashboard/CardDashboard';
 import data from '../../../../JSON/data.json';
-import dataTest from '../../../../JSON/dataTest.json';
-import Polizas from '@/components/cards/cardDashboard/Polizas';
 
 const inicio = () => {
     const items = [
@@ -26,20 +22,6 @@ const inicio = () => {
                 </Typography>
 
                 <ResponsiveSlider items={items} />
-
-                <div>
-                    {/* <h3>Polizas</h3> */}
-                    <div style={{ padding: '20px' }}>
-                    {dataTest.map((item, index) => (
-                        <Polizas
-                        key={index}
-                        title={item.title}
-                        tableData={item.table}
-                        chartData={item.chart}
-                        />
-                    ))}
-                    </div>
-                </div>
 
                 <div>
                     {/* <h3>Polizas</h3> */}

@@ -1,0 +1,36 @@
+[
+    {
+        "title": "RPF",
+        "table": [
+      {
+        "status": { "label": "PROCESADO", "color": "#809D3C", "value": "Procesados" },
+        "TiposDeServicio": "funerario",
+        "provedor": "Funeraria La Valles",
+        "fecha": "13/02/2025"
+      },
+      {
+        "status": { "label": "EN PROCESO", "color": "#213555", "value": "En proceso" },
+        "TiposDeServicio": "funerario",
+        "provedor": "Funeraria La Valles",
+        "fecha": "12/03/2025"
+      },
+      {
+        "status": { "label": "PENDIENTE", "color": "#FFE001", "value": "Pendientes" },
+        "TiposDeServicio": "funerario",
+        "provedor": "Funeraria La Paz",
+        "fecha": "01/02/2025"
+      },
+      {
+        "status": { "label": "RECHAZADO", "color": "#F93827", "value": "Rechazados" },
+        "TiposDeServicio": "Traslado de Restos",
+        "provedor": "Funeraria El Buen Pastor",
+        "fecha": "11/01/2025"
+      }
+    ],
+    "chart": {
+        "labels": ["Enero", "Febrero", "Marzo"],
+        "values": [1, 2, 5]
+      }    
+    }
+    
+]

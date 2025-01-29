@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Caravana",
+        "table": [
+      {
+        "status": { "label": "PROCESADO", "color": "#809D3C", "value": "Procesados" },
+        "TiposDeServicio": "Emergencia",
+        "provedor": "Clinica",
+        "fecha": "11/01/2025"
+      },
+      {
+        "status": { "label": "EN PROCESO", "color": "#213555", "value": "En proceso" },
+        "TiposDeServicio": "Emergencia",
+        "provedor": "Clinica",
+        "fecha": "01/02/2025"
+      },
+      {
+        "status": { "label": "PENDIENTE", "color": "#FFE001", "value": "Pendientes" },
+        "TiposDeServicio": "Consultas Generales",
+        "provedor": "Clinica",
+        "fecha": "12/03/2025"
+      },
+      {
+        "status": { "label": "RECHAZADO", "color": "#F93827", "value": "Rechazados" },
+        "TiposDeServicio": "Urgencias",
+        "provedor": "Hospital Central",
+        "fecha": "13/02/2025"
+      }
+    ],
+    "chart": {
+        "labels": ["Enero", "Febrero", "Marzo"],
+        "values": [907, 950, 980]
+      }      
+    }
+    
+]
