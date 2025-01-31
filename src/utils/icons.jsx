@@ -15,6 +15,10 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+
 
 const icons = {
   HomeIcon, //casa 
@@ -34,6 +38,9 @@ const icons = {
   AutorenewIcon, //Dos flechas (proceso)
   NotificationAddIcon, //nueva notificacion
   AdminPanelSettingsIcon, //escudo y persona
+  LibraryAddCheckIcon, //vistoBueno varios
+  ReportProblemIcon, //warning
+  DisabledByDefaultIcon, //x dentro de un cuadro
 
 };
 

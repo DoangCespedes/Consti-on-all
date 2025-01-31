@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,19 +11,16 @@ import Grid from '@mui/material/Grid'; // Para diseño responsivo
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import { Chip } from '@mui/material';
+import CustomCard from '../customCard/CustomCard';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const CardDashboard = ({ title, tableData, chartData }) => {
   return (
-    <Card sx={{  margin: '20px auto', padding: 2 }}>
-      <Typography variant="h5" component="div" gutterBottom>
-        {title}
-      </Typography>
-      <CardContent>
-        {/* Grid para organización responsiva */}
+    <CustomCard
+      title={title} icon="HomeIcon"
+    >
         <Grid container spacing={2} alignItems="flex-start">
-          {/* Tabla (50% en pantallas grandes, 100% en pantallas pequeñas) */}
           <Grid item xs={12} md={8}>
             <TableContainer component={Paper}>
               <Table size="small">
@@ -43,9 +37,9 @@ const CardDashboard = ({ title, tableData, chartData }) => {
                     <TableRow key={index}>
                       <TableCell>
                         <Chip
-                          label={row.status.label} // Accede correctamente al label del status
+                          label={row.status.label} 
                           sx={{
-                            backgroundColor: row.status.color, // Usa el color del JSON
+                            backgroundColor: row.status.color, 
                             color: "#fff", 
                             fontWeight: "bold",
                           }}
@@ -88,8 +82,7 @@ const CardDashboard = ({ title, tableData, chartData }) => {
             />
           </Grid>
         </Grid>
-      </CardContent>
-    </Card>
+    </CustomCard>
   );
 };
 
