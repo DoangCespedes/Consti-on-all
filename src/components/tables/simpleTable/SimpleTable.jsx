@@ -14,7 +14,7 @@ import Grid from '@mui/material/Grid';
 
 const ReusableTable = ({ title, columns, tableData, onRowSelect }) => {
   const [selectedRow, setSelectedRow] = useState(null);
-  const [hoveredRow, setHoveredRow] = useState(null); // Estado para manejar el hover
+  const [hoveredRow, setHoveredRow] = useState(null); 
 
   const handleRowClick = (row) => {
     setSelectedRow(row);
@@ -36,9 +36,9 @@ const ReusableTable = ({ title, columns, tableData, onRowSelect }) => {
         <TableContainer component={Paper}>
           <Table size="small">
             <TableHead>
-              <TableRow>
+              <TableRow sx={{backgroundColor:'#213555'}}>
                 {columns.map((col) => (
-                  <TableCell key={col.field}>
+                  <TableCell key={col.field} sx={{color:'#fff'}}>
                     <strong>{col.headerName}</strong>
                   </TableCell>
                 ))}

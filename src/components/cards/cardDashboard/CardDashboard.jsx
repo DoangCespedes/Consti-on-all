@@ -15,10 +15,10 @@ import CustomCard from '../customCard/CustomCard';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const CardDashboard = ({ title, tableData, chartData }) => {
+const CardDashboard = ({ title, tableData, chartData, icon }) => {
   return (
     <CustomCard
-      title={title} icon="HomeIcon"
+      title={title} icon={icon}
     >
         <Grid container spacing={2} alignItems="flex-start">
           <Grid item xs={12} md={8}>

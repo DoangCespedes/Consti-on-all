@@ -2,7 +2,6 @@
 
 // import ResponsiveSlider2 from '@/components/sliderCards/ResponsiveSlider2';
 import React, { useState } from "react";
-import data from '../../../JSON/data.json';
 import caravana from '../../../JSON/caravana.json';
 import asistanet from '../../../JSON/asistanet.json';
 import rpf from '../../../JSON/rpf.json';
@@ -18,8 +17,8 @@ const AppA = () => {
   const [selectedEmpresa, setSelectedEmpresa] = useState(null);
 
   const items = [
-    { image: "/assets/caravana.png", text: "caravana" },
-    { image: "/assets/asistanet.png", text: "asistanet" },
+    { image: "/assets/caravana.png", text: "caravana"},
+    { image: "/assets/asistanet.png", text: "asistanet"},
     { image: "/assets/rpf.png", text: "rpf" },
     { image: "/assets/oftalnet.jpg", text: "oftalnet" },
     { image: "/assets/dentalnet.png", text: "dentalnet" },
@@ -35,11 +34,9 @@ const AppA = () => {
     <>
       <Container>
 
-        <Typography variant="h4" textAlign="center" sx={{ my: 2 }}>
+        <Typography variant="h4">
           Filtrar ordenes por empresa
         </Typography>
-
-
 
         <CarouselEmpresas items={items} onSelect={handleSelect} />
 

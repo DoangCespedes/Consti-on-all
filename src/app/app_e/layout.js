@@ -51,8 +51,7 @@ export default function Layout({ children }) {
         <div>
           <CustomDrawer style={{ marginTop: '5rem' }} menuOptions={menuOptions} />
         </div>
-        <div style={{ padding: '5rem', position: 'relative' }}>
-        
+        <div style={{ paddingLeft: '5rem', paddingRight:'5rem', position: 'relative', paddingTop:'2rem' }}>
           {children}
         </div>
       </div>

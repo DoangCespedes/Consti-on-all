@@ -1,0 +1,33 @@
+[
+  {
+    "Numero_de_poliza": "HCMC-001001-2269",
+    "Titular": "V-15332819 MARIA ALEJANDRA RAMIREZ PINEDA",
+    "Vigencia": "01/11/2024 - 01/11/2025",
+    "Estado": "PENDIENTE",
+    "Beneficiarios": [
+      "Juan Perez",
+      "Ana Gomez",
+      "Luis Martinez"
+    ]
+  },
+  {
+    "Numero_de_poliza": "PAVI-001001-6",
+    "Titular": "V-15332819 MARIA ALEJANDRA RAMIREZ PINEDA",
+    "Vigencia": "08/10/2024 - 08/10/2039",
+    "Estado": "PENDIENTE",
+    "Beneficiarios": [
+      "Carlos Rodriguez",
+      "Sofia Torres"
+    ]
+  },
+  {
+    "Numero_de_poliza": "AUTO-001001-126818",
+    "Titular": "V-15332819 MARIA ALEJANDRA RAMIREZ PINEDA",
+    "Vigencia": "30/07/2024 - 30/07/2025",
+    "Estado": "PENDIENTE",
+    "Beneficiarios": [
+      "Fernanda Lopez",
+      "Ricardo Dominguez"
+    ]
+  }
+]
