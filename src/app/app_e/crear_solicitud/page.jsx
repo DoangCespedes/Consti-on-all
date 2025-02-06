@@ -16,6 +16,10 @@ const CrearSolicitud = () => {
     
   const [formData, setFormData] = useState({
     ciudad: '',
+    enfermedad: '',
+    subServicio: '',
+    especialidad: '',
+    proveedor: '',
     recados: {
       cedula: false,
       informeMedico: false,
@@ -56,6 +60,21 @@ const CrearSolicitud = () => {
     setSelectedRow(null);
     setSelectedRowTypePolicy(null)
     setFechaDesde('')
+
+    setFormData({
+      // ciudad: '',
+      // enfermedad: '',
+      // subServicio: '',
+      // especialidad: '',
+      proveedor: null,
+      recados: {
+        cedula: false,
+        informeMedico: false,
+        ordenInterconsulta: false,
+        referencia: false,
+      },
+    });
+    
   };
 
     const userData = [
