@@ -11,15 +11,8 @@ const CrearSolicitud = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const { control, setValue } = useForm();
-  const [fechaDesde, setFechaDesde] = useState('');
-  const [selectedRowTypePolicy, setSelectedRowTypePolicy] = useState(null);
-    
   const [formData, setFormData] = useState({
     ciudad: '',
-    enfermedad: '',
-    subServicio: '',
-    especialidad: '',
-    proveedor: '',
     recados: {
       cedula: false,
       informeMedico: false,
@@ -27,6 +20,11 @@ const CrearSolicitud = () => {
       referencia: false,
     },
   });
+
+  const [fechaDesde, setFechaDesde] = useState('');
+  const [selectedRowTypePolicy, setSelectedRowTypePolicy] = useState(null);
+  const [ordenes, setOrdenes] = useState([]);
+  const [showReq, setShowReq] = useState(null);
 
   // Sincronizar `formData` con React Hook Form
   useEffect(() => {
@@ -37,12 +35,20 @@ const CrearSolicitud = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'fechaDesde' && !isValidDate(value)) {
+      console.error('Fecha inválida');
+      return;
+    }
     setFormData((prev) => ({ ...prev, [name]: value }));
     setValue(name, value);
   };
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
+    if (checked && !isValidForm()) {
+      console.error('Formulario inválido');
+      return;
+    }
     setFormData((prev) => ({
       ...prev,
       recados: { ...prev.recados, [name]: checked },
@@ -50,16 +56,27 @@ const CrearSolicitud = () => {
     setValue(`recados.${name}`, checked);
   };
 
-  // const handleRowSelect = (row) => {
-  //   setSelectedRow(row);
-  //   setOpenModal(true);
-  // };
+  function isValidDate(dateString) {
+    const dateParts = dateString.split('-');
+    const year = parseInt(dateParts[0], 10);
+    const month = parseInt(dateParts[1], 10) - 1;
+    const day = parseInt(dateParts[2], 10);
+    const date = new Date(year, month, day);
+    return date.getFullYear() === year && date.getMonth() === month && date.getDate() === day;
+  }
+
+  function isValidForm() {
+    // Implement your form validation here
+    return true; // Replace with your actual validation logic
+  }
 
   const handleCloseModal = () => {
     setOpenModal(false);
     setSelectedRow(null);
     setSelectedRowTypePolicy(null)
     setFechaDesde('')
+    setOrdenes([])
+    setShowReq(null)
 
     setFormData({
       // ciudad: '',
@@ -146,6 +163,10 @@ const CrearSolicitud = () => {
             fechaDesde={fechaDesde}
             selectedRowTypePolicy={selectedRowTypePolicy}
             setSelectedRowTypePolicy={setSelectedRowTypePolicy}
+            ordenes={ordenes}
+            setOrdenes={setOrdenes}
+            setShowReq={setShowReq}
+            showReq={showReq}
           />
         </CustomCard>
       </Container>

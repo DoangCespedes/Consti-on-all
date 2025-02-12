@@ -25,7 +25,6 @@ const CustomCard = ({ title, children, icon }) => {
         display="flex"
         alignItems="center"
         gap={1.5}
-        mb={2}
         flexDirection={{ xs: "column", sm: "row" }}
         textAlign={{ xs: "center", sm: "left" }}
       >
