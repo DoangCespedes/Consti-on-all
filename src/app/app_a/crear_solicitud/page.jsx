@@ -1,12 +1,12 @@
-'use client';
-
+'use client'
 import React, { useEffect, useState } from 'react';
-import { Container, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
 import SimpleTable from '@/components/tables/simpleTable/SimpleTable';
 import CustomCard from '@/components/cards/customCard/CustomCard';
 import { useForm } from 'react-hook-form';
 import DialogSolicitud from '@/components/dialog/dialogSolicitud/DialogSolicitud';
 import userData from '../../../../JSON/userData.json'
+import { HeaderButtons } from '@/components/cards/HeaderButtons';
 
 const CrearSolicitud = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -26,6 +26,8 @@ const CrearSolicitud = () => {
   const [selectedRowTypePolicy, setSelectedRowTypePolicy] = useState(null);
   const [ordenes, setOrdenes] = useState([]);
   const [showReq, setShowReq] = useState(null);
+  const [showPolicies, setShowPolicies] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   // Sincronizar `formData` con React Hook Form
   useEffect(() => {
@@ -67,8 +69,7 @@ const CrearSolicitud = () => {
   }
 
   function isValidForm() {
-    // Implement your form validation here
-    return true; // Replace with your actual validation logic
+    return true; 
   }
 
   const handleCloseModal = () => {
@@ -80,10 +81,6 @@ const CrearSolicitud = () => {
     setShowReq(null)
 
     setFormData({
-      // ciudad: '',
-      // enfermedad: '',
-      // subServicio: '',
-      // especialidad: '',
       proveedor: null,
       recados: {
         cedula: false,
@@ -94,8 +91,6 @@ const CrearSolicitud = () => {
     });
     
   };
-
-    
     
     const userColumns = [
       { field: 'Numero_de_poliza', headerName: 'Numero de poliza' },
@@ -108,10 +103,10 @@ const CrearSolicitud = () => {
     const dropdownOptions = [
       { label: 'Caracas', value: '001' },
       { label: 'Merida', value: '002' },
-      { label: 'Valencia', value: '003' },
-      { label: 'Barcelona', value: '003' },
-      { label: 'Maracaibo', value: '004' },
-      { label: 'Barinas', value: '005' }
+      { label: 'Valencia', value: '004' },
+      { label: 'Barcelona', value: '005' },
+      { label: 'Maracaibo', value: '006' },
+      { label: 'Barinas', value: '007' }
     ]
 
 
@@ -127,11 +122,38 @@ const CrearSolicitud = () => {
       }));
       setOpenModal(true);
     };
+
+
+
+    const btn = [{
+      title: 'Servicios',
+      color: '#1976d2', // Azul
+      iconColor: '#1565c0',
+      dropdownOptions: [
+        { label: 'Solicitar Atencion medica primaria', value: '001' }
+      ]
+    }]
+
+    const handleSelectChange = (value) => {
+      setSelectedOption(value);
+    };
     
+    console.log('Opción seleccionada:', selectedOption);
     
     return (
       <Container>
-        <Typography variant="h4">Crear Solicitud de Servicio AMP</Typography>
+        <Typography variant="h4">Crear Nueva Solicitud de Servicio</Typography>
+
+        <div style={{display:'flex', justifyContent:'center', alignContent:'center', marginTop:'3rem'}}>
+
+          <HeaderButtons
+            buttons={btn}
+            onChange={handleSelectChange} 
+          />
+        </div>
+
+        {selectedOption === '001' && (
+
         <CustomCard>
           <SimpleTable
             title="Polizas"
@@ -140,6 +162,8 @@ const CrearSolicitud = () => {
             onRowSelect={handleRowSelect}
           />
   
+        
+
           {selectedRow && (
             <div style={{ marginTop: '20px' }}>
               <h3>Detalles de la Fila Seleccionada:</h3>
@@ -166,6 +190,7 @@ const CrearSolicitud = () => {
             showReq={showReq}
           />
         </CustomCard>
+        )}
       </Container>
     );
   };

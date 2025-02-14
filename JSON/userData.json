@@ -1,0 +1,46 @@
+ [
+      {
+        "Numero_de_poliza": "HCMC-001001-2269",
+        "Titular": "V-15332819 Maria Josefina Perez Diaz",
+        "tipoid": "V",
+        "p_numid": 15332819,
+        "first_name": "Maria Josefina",
+        "last_name": "Perez Diaz",
+        "Vigencia": "08/10/2024 - 08/10/2039",
+        "email": "mari@example.com",
+        "status": "Activo",
+        "birthDate": "08/06/1980",
+        "sex": "F",
+        "phoneNumber": "-"
+      },
+      {
+        "Numero_de_poliza": "HCMC-001001-2269",
+        "Titular": "V-15332819 Maria Josefina Perez Diaz",
+        "tipoid": "V",
+        "p_numid": 6336433,
+        "first_name": "Jose Luis",
+        "last_name": "Perez",
+        "Vigencia": "08/10/2024 - 08/10/2039",
+        "email": "jose@example.com",
+        "status": "Activo",
+        "birthDate": "08/06/1957",
+        "sex": "F",
+        "phoneNumber": "-"
+      },
+      {
+        "Numero_de_poliza": "HCMC-001001-2269",
+        "Titular": "V-15332819 Maria Josefina Perez Diaz",
+        "tipoid": "V",
+        "p_numid": 8234908,
+        "first_name": "Amanda Antonieta",
+        "last_name": "Diaz",
+        "Vigencia": "08/10/2024 - 08/10/2039",
+        "email": "amanda@example.com",
+        "status": "Activo",
+        "birthDate": "08/06/1960",
+        "sex": "F",
+        "phoneNumber": "-"
+      }
+    ]
+
+  

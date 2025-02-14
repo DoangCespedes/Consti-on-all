@@ -18,6 +18,13 @@ import { Controller } from 'react-hook-form';
 import SelectCustomer from '@/components/select/SelectCustomer';
 import DialogError from '../dialogError/DialogError';
 import SimpleTableWithSelected from '@/components/tables/simpleTableWithSelected/SimpleTableWithSelected';
+import enfermedades from '../../../../JSON/enfermedades.JSON'
+import tipoPoliza from '../../../../JSON/tipoPoliza.JSON'
+import userColumns from '../../../../JSON/userColumns.JSON'
+import subServicios from '../../../../JSON/subServicios.JSON'
+import especialidadEstudios from '../../../../JSON/especialidadEstudios.JSON'
+import proveedor from '../../../../JSON/proveedor.JSON'
+
 
 const DialogSolicitud = ({
   open,
@@ -76,16 +83,6 @@ const DialogSolicitud = ({
 
   if (!selectedRow) return null;
 
-  const tipoPoliza = [
-    {id:1,type:'colectiva', client:'Instituto Aereopuerto Internacional Maiquetia' },
-    {id:2,type:'colectiva', client:'Contraloria Municipal de Baruta' }
-  ];
-
-  const userColumns = [
-    { field: 'type', headerName: 'Tipo de poliza' },
-    { field: 'client', headerName: 'Nombre del contratante' }
-  ];
-
   const handleSubmit = () => {
     if (!fechaDesde) {
       setError({ open: true, message: 'Por favor, selecciona una fecha' });
@@ -102,32 +99,6 @@ const DialogSolicitud = ({
     console.log(submitData, 'AQUI FUE'); 
   };
 
-  const enfermedades = [
-    { label: 'fiebre', value: '001' },
-    { label: 'gripe', value: '002' },
-    { label: 'dolor de estomago', value: '003' },
-    { label: 'diarrea', value: '003' },
-    { label: 'vomitos', value: '004' },
-    { label: 'infeccion', value: '005' }
-  ];
-
-  const subServicios = [
-    { label: 'Medicina preventiva', value: '001' },
-    { label: 'Evaluacion medica', value: '002' },
-    { label: 'Examenes', value: '003' },
-  ];
-
-  const especialidadEstudios = [
-    { label: 'Eco abdominal', value: '001' },
-    { label: 'Tomografia', value: '002' },
-    { label: 'Lavado de oidos', value: '003' },
-  ];
-
-  const Proveedor = [
-    { label: 'Clinica Arboleda', value: '001' },
-    { label: 'Clinica Caracas', value: '002' },
-    { label: 'Asistanet', value: '003' },
-  ];
 
   const handleAddOrder = () => {
     if (!newOrder.enfermedad || !newOrder.subServicio || !newOrder.especialidad || !newOrder.proveedor) {
@@ -285,7 +256,7 @@ const handleSelectChange = (name) => (event) => {
               <SelectCustomer
                 value={newOrder.proveedor}
                 onChange={handleSelectChange('proveedor')}
-                options={Proveedor}
+                options={proveedor}
                 label="Proveedor de Salud"
               />
             </Grid>

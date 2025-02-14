@@ -1,0 +1,9 @@
+[
+    { "label": "fiebre", "value": "001" },
+    { "label": "gripe", "value": "002" },
+    { "label": "dolor de estomago", "value": "003" },
+    { "label": "diarrea", "value": "003" },
+    { "label": "vomitos", "value": "004" },
+    { "label": "infeccion", "value": "005" }
+  ]
+  

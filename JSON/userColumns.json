@@ -1,0 +1,11 @@
+[
+    {
+      "field": "type",
+      "headerName": "Tipo de poliza"
+    },
+    {
+      "field": "client",
+      "headerName": "Nombre del contratante"
+    }
+  ]
+  
