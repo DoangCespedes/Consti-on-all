@@ -18,6 +18,7 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const icons = {
@@ -41,6 +42,7 @@ const icons = {
   LibraryAddCheckIcon, //vistoBueno varios
   ReportProblemIcon, //warning
   DisabledByDefaultIcon, //x dentro de un cuadro
+  DeleteIcon, //Papelera
 
 };
 

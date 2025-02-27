@@ -3,7 +3,6 @@
 import NavBar from '@/components/navbars/NavBar';
 import styles from './layout.module.css';
 import CustomDrawer from '@/components/drawer/CustomDrawer';
-import Link from 'next/link';
 import Head from 'next/head';
 
 export default function Layout({ children }) {

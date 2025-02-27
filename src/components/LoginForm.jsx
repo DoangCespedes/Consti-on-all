@@ -29,22 +29,51 @@ export default function LoginForm() {
     setValue('tipoDocumento', newValue); // Actualiza el valor en react-hook-form
   };
 
+  const getProfile = async() =>{
+    try {
+      const response = await axios.get('http://localhost:7000/api/auth/profile', {
+        withCredentials: true
+      });
+
+      if (response.status === 200) {
+        const { name, profile, status, user_id } = response.data;
+        sessionStorage.setItem('token', response.data.token);
+        setUser({ 
+          name, 
+          profile, 
+          status, 
+          user_id 
+        });
+      }
+    } catch (error) {
+      // Si no hay perfil, mantenemos el user en null
+    } finally {
+      setLoading(false);
+    }
+  }
+  
+
   const onSubmit = async (data) => {
     const userId = `${data.tipoDocumento}${data.numeroDocumento}`;
     try {
       const response = await axios.post('http://localhost:7000/api/auth/login', {
-        nombre: userId,
+        user_name: userId,
         password: data.password
-      });
+      }, { withCredentials: true }); // Asegúrate de incluir las 
 
       if (response.status === 200) {
         router.push('/app_e');
+        getProfile()
       }
     } catch (error) {
       console.error('Error al hacer la solicitud:', error);
       setErrorMessage('Error al iniciar sesión. Por favor, revisa tus credenciales.');
     }
+
+    
   };
+
+  
 
   return (
     <Container maxWidth="sm" sx={{ mt: 8, p: 3, borderRadius: 2, background:'rgba(255,255,255, 0.7)' }}>
