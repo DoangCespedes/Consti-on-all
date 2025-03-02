@@ -5,6 +5,7 @@ import "./globals.css";
 import { CounterProvider } from "../../context/CounterContext";
 import NavBar from "@/components/navbars/NavBar";
 import { usePathname } from "next/navigation";
+import { UserProviderWrapper } from "../../context/user.context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -43,6 +44,7 @@ export default function RootLayoutClient({ children }) {
         <link rel="icon" href="assets/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <UserProviderWrapper>
         <CounterProvider>
           <header>
             {mostrarNavBar && (
@@ -56,6 +58,7 @@ export default function RootLayoutClient({ children }) {
           </header>
           {children}
         </CounterProvider>
+        </UserProviderWrapper>
       </body>
     </html>
   );
